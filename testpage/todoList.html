@@ -1,0 +1,38 @@
+<!-- v-for, v-model, v-on -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="../js/vue.js"></script>
+        <style>
+            a{color:blue;cursor: pointer;font-size: 12px;}
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <input type="text" v-model="inputValue"/>
+            <button @click="handleBtn">提交</button>
+            <ul>
+                <li v-for="(item, index) in list">{{item}}-------[<a @click="delLi(index,$event)">移除</a>]</li>
+            </ul>
+        </div>
+        <script>
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    inputValue: '',
+                    list: []
+                },
+                methods:{
+                    handleBtn: function() {
+                        this.list.push(this.inputValue);
+                        this.inputValue = '';
+                    },
+                    delLi: function(index) {
+                        console.log(index);
+                        this.list.splice(index,1);
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
